@@ -15,7 +15,7 @@ class Cart:
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
         if not cart:
-            cart = self.session[settings.CART_SESSION_ID] = {}
+            cart = self.session[settings.CART_SESSION_ID] = dict()
         self.cart = cart
 
     def add(self, product: Product,
@@ -31,7 +31,7 @@ class Cart:
         if product_id not in self.cart:
             self.cart[product_id] = {
                 'quantity': 0,
-                'price': product.price
+                'price': str(product.price)
             }
         if override_quantity:
             self.cart[product_id]['quantity'] = quantity
