@@ -1,7 +1,14 @@
+import logging
+
 from django.shortcuts import render, get_object_or_404
 
 from cart.forms import CartAddProductForm
 from .models import Category, Product
+
+import logging
+from logging import config
+
+logger = logging.getLogger('console_logger')
 
 
 def product_list(request, category_slug=None):
@@ -28,6 +35,4 @@ def product_detail(request, id, slug):
                   {
                       'product': product,
                       'cart_product_form': cart_product_form
-                   })
-
-
+                  })
